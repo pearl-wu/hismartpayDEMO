@@ -1,1 +1,1 @@
-# hismartpayDemo
+# Hismart PAY Plugin
