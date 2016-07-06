@@ -11,8 +11,8 @@
     <repo>https://github.com/pearl-wu/hismartpayDemo.git</repo>
     <issue>https://github.com/pearl-wu/hismartpayDemo.git</issue>
 
-    <js-module src="www/hismartpay.js" name="hiOrder">
-        <clobbers target="hiOrder" />
+    <js-module src="www/hismartpay.js" name="hismartpay">
+        <clobbers target="hismartpay" />
     </js-module>
 	
     <platform name="android">
@@ -21,9 +21,14 @@
 	</config-file>
     	
         <config-file target="res/xml/config.xml" parent="/*">
-           
+           <feature name="hiOrder">
+                <param name="android-package" value="com.hismart.pay.MainActivity"/>
+            </feature>
         </config-file>
-
+        
+        <source-file src="libs/android-support-v4.jar" target-dir="libs" />
+	<source-file src="src/com/hismart/pay/MainActivity.java" target-dir="src/com/hismart/pay/" />
+	
     </platform>
 
 </plugin>
