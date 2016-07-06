@@ -25,9 +25,8 @@
                 <param name="android-package" value="com.hismart.pay.MainActivity"/>
             </feature>
         </config-file>
-		
-        <source-file src="libs/android-support-v4.jar" target-dir="libs" />
-        <source-file src="libs/alipaysdk.jar" target-dir="libs" />
+
+        	<source-file src="libs/alipaysdk.jar" target-dir="libs" />
 		<source-file src="libs/alipaysecsdk.jar" target-dir="libs" />
 		<source-file src="libs/alipayutdid.jar" target-dir="libs" />
 		<source-file src="libs/android-support-v4.jar" target-dir="libs" />
