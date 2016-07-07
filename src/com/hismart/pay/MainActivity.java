@@ -24,7 +24,7 @@ public class MainActivity extends CordovaPlugin {
     			
     			Toast.makeText(cordova.getActivity(), "paypay", Toast.LENGTH_LONG).show();
     			
-    			if(!checkPackageInfo(cordova.getActivity(),"com.hisense.hiphone.payment")){
+    		/*	if(!checkPackageInfo(cordova.getActivity(),"com.hisense.hiphone.payment")){
     				Intent it = new Intent(Intent.ACTION_VIEW);
     				it.setData(Uri.parse("himarket://details?id="+ "com.hisense.hiphone.payment"+"&isAutoDownload="+ 1));
     				cordova.getActivity().startActivity(it);
@@ -58,7 +58,7 @@ public class MainActivity extends CordovaPlugin {
 	    			it.setData(Uri.parse("himarket://details?id="+"com.hisense.hiphone.payment"+"&isAutoDownload="+ 1));
 	    			cordova.getActivity().startActivity(it);
 	    			
-    			}	
+    			}*/	
     			
     	       return true;
     		}else if(action.equals("Iandroid")){
@@ -120,7 +120,7 @@ public class MainActivity extends CordovaPlugin {
     	  
     	  }       	  
 
-			public void Resultecho(Boolean boo, String meg, CallbackContext callbackContext){
+		public void Resultecho(Boolean boo, String meg, CallbackContext callbackContext){
     		   if(boo){
     	           callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, meg));
     		   } else {
