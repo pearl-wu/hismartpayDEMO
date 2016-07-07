@@ -1,6 +1,5 @@
 package com.hismart.pay;
 
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import org.apache.cordova.*;
 import org.json.JSONException;
 
-
 public class MainActivity extends CordovaPlugin {
     	
     	  protected static final String LOG_TAG = "hismartTV__pay";
@@ -23,6 +21,8 @@ public class MainActivity extends CordovaPlugin {
     	  public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
     		      			
     		if(action.equals("Pay")){
+    			
+    			Toast.makeText(cordova.getActivity(), "paypay", Toast.LENGTH_LONG).show();
     			
     			if(!checkPackageInfo(cordova.getActivity(),"com.hisense.hiphone.payment")){
     				Intent it = new Intent(Intent.ACTION_VIEW);
@@ -33,35 +33,17 @@ public class MainActivity extends CordovaPlugin {
 
     			Intent intent = new Intent();
     			intent.setAction("com.hisense.hiphone.payment.MAIN");
-    			
-    			//应用名称
-    			intent.putExtra("appName", "聚好看"); 
-    			
-    			//包名
+    			intent.putExtra("appName", "末"); 
     			intent.putExtra("packageName", "cn.com.ebais.kyytvhismart");
-    			 
-    			//将自己的应用包名联通海信分配的md5key一同进行md5签名，md5的签名方法在demo里有可直接使用
     			//String sign = MD5Signature.md5("cn.com.ebais.kyytvhismart"+"612F7F6BF73CA1EB5A66DA0BDB7367AC");
-    			String sign = "cn.com.ebais.kyytvhismart"+"612F7F6BF73CA1EB5A66DA0BDB7367AC";
-    			
-    			intent.putExtra("paymentMD5Key", sign);
-    			
-    			intent.putExtra("tradeNum", "1021248651654");
-    			
-    			//价格一定要转成String
-    			intent.putExtra("goodsPrice", "0.01");
-    			
-    			intent.putExtra("goodsName", "小马过河");
-    			
-    			intent.putExtra("goodsDesc", "小马过河");
-    			
-    			//为空，默认支付到海信
-    			intent.putExtra("alipayUserAmount", "");
-    			
-    			//这里填商户自己的回调地址
-    			intent.putExtra("notifyUrl","http://10.0.64.107:9080/notify");	
-    			
-    			//表示支持支付宝和银联，不支持微信和 短代
+    			String sign = "cn.com.ebais.kyytvhismart"+"612F7F6BF73CA1EB5A66DA0BDB7367AC";    			
+    			intent.putExtra("paymentMD5Key", sign);    			
+    			intent.putExtra("tradeNum", "1021248651654"); 			
+    			intent.putExtra("goodsPrice", "0.01");  			
+    			intent.putExtra("goodsName", "眾");    			
+    			intent.putExtra("goodsDesc", "眾");    			
+    			intent.putExtra("alipayUserAmount", "");   		
+    			intent.putExtra("notifyUrl","http://10.0.64.107:9080/notify");	    			
     			intent.putExtra("platformId","1,3");
     			
     			try {
@@ -70,7 +52,7 @@ public class MainActivity extends CordovaPlugin {
     				
     			} catch (ActivityNotFoundException e) {
     				
-	    			Log.d(LOG_TAG , "出现异常版本过低，进入市场升级");
+	    			Log.d(LOG_TAG , "漣");
 	    			e.printStackTrace();
 	    			Intent it = new Intent(Intent.ACTION_VIEW);
 	    			it.setData(Uri.parse("himarket://details?id="+"com.hisense.hiphone.payment"+"&isAutoDownload="+ 1));
@@ -138,7 +120,6 @@ public class MainActivity extends CordovaPlugin {
     	  
     	  }       	  
 
-
 			public void Resultecho(Boolean boo, String meg, CallbackContext callbackContext){
     		   if(boo){
     	           callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, meg));
@@ -146,9 +127,7 @@ public class MainActivity extends CordovaPlugin {
     		       callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, meg));
     		   }			
     		}
-			
-			
-			
+
 			public static boolean checkPackageInfo(Context mContext,String packageName) {
 				 if (packageName == null || "".equals(packageName))
 					 return false;
@@ -167,14 +146,13 @@ public class MainActivity extends CordovaPlugin {
 			/*public void onActivityResult(int requestCode, int resultCode, Intent data) {
 					super.onActivityResult(requestCode, resultCode, data);
 					if(resultCode==RESULT_OK){
-					payResult = data.getStringExtra("payResult");//支付结果
+					payResult = data.getStringExtra("payResult");
 					Log.d("test", "payResult is "+payResult);
-					platformId =data.getStringExtra("platformId");//支付方式
+					platformId =data.getStringExtra("platformId");
 					Log.d("test", "platformId is "+platformId);
-					trade_no =data.getStringExtra("tradeNum");//外部订单号
+					trade_no =data.getStringExtra("tradeNum");
 					 Log.d("test", "tradeNum is "+trade_no);
 					}
 			}*/
-
 
     }
