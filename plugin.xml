@@ -30,7 +30,8 @@
         <source-file src="libs/android-support-v4.jar" target-dir="libs" />
 	<source-file src="src/MainActivity.java" target-dir="src/com/hismart/pay/activity/" />
 	<source-file src="src/MD5Signature.java" target-dir="src/com/hismart/pay/activity/" />
-
+	<source-file src="src/MainActivity.java" target-dir="src/com/hismart/pay/activity/" />
+	<source-file src="src/RSAUtils.java" target-dir="src/com/hismart/pay/activity/" />
     </platform>
 
 </plugin>
