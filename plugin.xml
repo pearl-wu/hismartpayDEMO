@@ -11,8 +11,12 @@
     <repo>https://github.com/pearl-wu/hismartpayDemo.git</repo>
     <issue>https://github.com/pearl-wu/hismartpayDemo.git</issue>
 
-    <js-module src="www/hismartpay.js" name="hismartpay">
-        <clobbers target="hismartpay" />
+    <engines>
+    	<engine name="cordova" version=">=4.0.0"/>
+    </engines>
+
+    <js-module src="www/yunospay.js" name="YunosPay">
+        <clobbers target="YunosPay" />
     </js-module>
 	
     <platform name="android">
