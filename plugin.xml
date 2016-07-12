@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.hismart.pay"
+    id="com.bais.hismart.pay"
     version="1.0">
 
     <name>PAY Player</name>
@@ -15,8 +15,8 @@
     	<engine name="cordova" version=">=4.0.0"/>
     </engines>
 
-    <js-module src="www/yunospay.js" name="YunosPay">
-        <clobbers target="YunosPay" />
+    <js-module src="www/hismartpay.js" name="HismartPay">
+        <clobbers target="HismartPay" />
     </js-module>
 	
     <platform name="android">
