@@ -1,9 +1,5 @@
 
-package com.example.hisensepaydemo;
-
-
-
-
+package com.bais.hismart.pay.activity;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
