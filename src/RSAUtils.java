@@ -29,11 +29,11 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ??乗惻??滓?審SA蟇�徴蟇? 
+	     * 随机生成RSA密钥对 
 	     *  
 	     * @param keyLength 
-	     *            蟇�徴?柄蠎ｦ?瑚?�峩�?512�?2048<br> 
-	     *            荳??握1024 
+	     *            密钥长度，范围：512～2048<br> 
+	     *            一般1024 
 	     * @return 
 	     */  
 	    public static KeyPair generateRSAKeyPair(int keyLength)  
@@ -51,23 +51,23 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?畑?�?徴???? <br> 
-	     * 豈乗ｬ｡???�?�?苓?よ焚�御?崎�雜�?�?�徴??�柄蠎ｦ?ｼ?丞悉11 
+	     * 用公钥加密 <br> 
+	     * 每次加密的字节数，不能超过密钥的长度值减去11 
 	     *  
 	     * @param data 
-	     *            ?????�焚?紺??�yte?焚?紺 
+	     *            需加密数据的byte数据 
 	     * @param pubKey 
-	     *            ?�?徴 
-	     * @return ???�?守?�yte??区焚?紺 
+	     *            公钥 
+	     * @return 加密后的byte型数据 
 	     */  
 	    public static byte[] encryptData(byte[] data, PublicKey publicKey)  
 	    {  
 	        try  
 	        {  
 	            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");  
-	            // 郛也?∝?崎ｮｾ螳夂?也?∵婿蠑丞?雁?�徴  
+	            // 编码前设定编码方式及密钥  
 	            cipher.init(Cipher.ENCRYPT_MODE, publicKey);  
-	            // 莨蜈･郛也?∵焚?紺蟷ｶ?泌?樒?也?∫?捺??  
+	            // 传入编码数据并返回编码结果  
 	            return cipher.doFinal(data);  
 	        } catch (Exception e)  
 	        {  
@@ -77,12 +77,12 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?畑遘�徴隗?蟇? 
+	     * 用私钥解密 
 	     *  
 	     * @param encryptedData 
-	     *            扈剰?㌃ncryptedData()???�?泌?樒?�yte?焚?紺 
+	     *            经过encryptedData()加密返回的byte数据 
 	     * @param privateKey 
-	     *            遘�徴 
+	     *            私钥 
 	     * @return 
 	     */  
 	    public static byte[] decryptData(byte[] encryptedData, PrivateKey privateKey)  
@@ -99,7 +99,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?夊?��?徴byte[](publicKey.getEncoded())蟆��?徴霑伜?滂?碁?ら畑莠山SA邂玲?? 
+	     * 通过公钥byte[](publicKey.getEncoded())将公钥还原，适用于RSA算法 
 	     *  
 	     * @param keyBytes 
 	     * @return 
@@ -116,7 +116,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?夊?�?�徴byte[]蟆��?徴霑伜?滂?碁?ら畑莠山SA邂玲?? 
+	     * 通过私钥byte[]将公钥还原，适用于RSA算法 
 	     *  
 	     * @param keyBytes 
 	     * @return 
@@ -133,7 +133,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 菴ｿ逕ｨN?‘?ｼ?伜?溷�?徴 
+	     * 使用N、e值还原公钥 
 	     *  
 	     * @param modulus 
 	     * @param publicExponent 
@@ -153,7 +153,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 菴ｿ逕ｨN?‥?ｼ?伜?溽?�徴 
+	     * 使用N、d值还原私钥 
 	     *  
 	     * @param modulus 
 	     * @param privateExponent 
@@ -173,12 +173,12 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 莉主?礼ｬｦ荳ｲ荳ｭ??霓ｽ?�?徴 
+	     * 从字符串中加载公钥 
 	     *  
 	     * @param publicKeyStr 
-	     *            ?�?徴?焚?紺蟄礼ｬｦ荳? 
+	     *            公钥数据字符串 
 	     * @throws Exception 
-	     *             ??霓ｽ?�?徴?慮莠ｧ?溽?�?ょｸｸ 
+	     *             加载公钥时产生的异常 
 	     */  
 	    public static PublicKey loadPublicKey(String publicKeyStr) throws Exception  
 	    {  
@@ -190,19 +190,19 @@ package com.bais.hismart.pay.activity;
 	            return (RSAPublicKey) keyFactory.generatePublic(keySpec);  
 	        } catch (NoSuchAlgorithmException e)  
 	        {  
-	            throw new Exception("??豁､邂玲??");  
+	            throw new Exception("无此算法");  
 	        } catch (InvalidKeySpecException e)  
 	        {  
-	            throw new Exception("?�?徴??樊??");  
+	            throw new Exception("公钥非法");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("?�?徴?焚?紺荳ｺ遨ｺ");  
+	            throw new Exception("公钥数据为空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 莉主?礼ｬｦ荳ｲ荳ｭ??霓ｽ遘�徴<br> 
-	     * ??霓ｽ?慮菴ｿ逕ｨ??�弍PKCS8EncodedKeySpec��KCS#8郛也?∫?Кey??�ｻ､�峨?? 
+	     * 从字符串中加载私钥<br> 
+	     * 加载时使用的是PKCS8EncodedKeySpec（PKCS#8编码的Key指令）。 
 	     *  
 	     * @param privateKeyStr 
 	     * @return 
@@ -219,23 +219,23 @@ package com.bais.hismart.pay.activity;
 	            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);  
 	        } catch (NoSuchAlgorithmException e)  
 	        {  
-	            throw new Exception("??豁､邂玲??");  
+	            throw new Exception("无此算法");  
 	        } catch (InvalidKeySpecException e)  
 	        {  
-	            throw new Exception("遘�徴??樊??");  
+	            throw new Exception("私钥非法");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("遘�徴?焚?紺荳ｺ遨ｺ");  
+	            throw new Exception("私钥数据为空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 莉取?�ｻｶ荳ｭ?灘�豬∽ｸｭ??霓ｽ?�?徴 
+	     * 从文件中输入流中加载公钥 
 	     *  
 	     * @param in 
-	     *            ?�?徴霎灘�豬? 
+	     *            公钥输入流 
 	     * @throws Exception 
-	     *             ??霓ｽ?�?徴?慮莠ｧ?溽?�?ょｸｸ 
+	     *             加载公钥时产生的异常 
 	     */  
 	    public static PublicKey loadPublicKey(InputStream in) throws Exception  
 	    {  
@@ -244,19 +244,19 @@ package com.bais.hismart.pay.activity;
 	            return loadPublicKey(readKey(in));  
 	        } catch (IOException e)  
 	        {  
-	            throw new Exception("?�?徴?焚?紺豬∬ｯｻ??夜?呵ｯｯ");  
+	            throw new Exception("公钥数据流读取错误");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("?�?徴霎灘�豬∽ｸｺ遨?");  
+	            throw new Exception("公钥输入流为空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 莉取?�ｻｶ荳ｭ?霓ｽ遘�徴 
+	     * 从文件中加载私钥 
 	     *  
 	     * @param keyFileName 
-	     *            遘�徴??�ｻｶ??? 
-	     * @return ?弍?凄??仙?? 
+	     *            私钥文件名 
+	     * @return 是否成功 
 	     * @throws Exception 
 	     */  
 	    public static PrivateKey loadPrivateKey(InputStream in) throws Exception  
@@ -266,15 +266,15 @@ package com.bais.hismart.pay.activity;
 	            return loadPrivateKey(readKey(in));  
 	        } catch (IOException e)  
 	        {  
-	            throw new Exception("遘�徴?焚?紺隸ｻ?夜?呵ｯｯ");  
+	            throw new Exception("私钥数据读取错误");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("遘�徴霎灘�豬∽ｸｺ遨?");  
+	            throw new Exception("私钥输入流为空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 隸ｻ?門?�徴菫｡諱ｯ 
+	     * 读取密钥信息 
 	     *  
 	     * @param in 
 	     * @return 
@@ -301,7 +301,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ??灘魂?�?徴菫｡諱ｯ 
+	     * 打印公钥信息 
 	     *  
 	     * @param publicKey 
 	     */  
