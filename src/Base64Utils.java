@@ -1,4 +1,4 @@
-package com.hismart.pay.activity;
+package com.bais.hismart.pay.activity;
 
 import java.io.UnsupportedEncodingException; 
 
@@ -18,7 +18,7 @@ public class Base64Utils
             -1, -1, -1 };  
   
     /** 
-     * ?? å?? 
+     * ??Â Ã¥?? 
      *  
      * @param data 
      * @return 
@@ -58,7 +58,7 @@ public class Base64Utils
     }  
   
     /** 
-     * è§?å¯? 
+     * Ã¨Â§?Ã¥Â¯? 
      *  
      * @param str 
      * @return 
