@@ -29,10 +29,10 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 随机生成RSA密钥对 
+	     * 隨機生成RSA密鑰對 
 	     *  
 	     * @param keyLength 
-	     *            密钥长度，范围：512～2048<br> 
+	     *            密鑰長度，范圍：512～2048<br> 
 	     *            一般1024 
 	     * @return 
 	     */  
@@ -51,23 +51,23 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 用公钥加密 <br> 
-	     * 每次加密的字节数，不能超过密钥的长度值减去11 
+	     * 用公鑰加密 <br> 
+	     * 每次加密的字節數，不能超過密鑰的長度值減去11 
 	     *  
 	     * @param data 
-	     *            需加密数据的byte数据 
+	     *            需加密數據的byte數據 
 	     * @param pubKey 
-	     *            公钥 
-	     * @return 加密后的byte型数据 
+	     *            公鑰
+	     * @return 加密后的byte型數據 
 	     */  
 	    public static byte[] encryptData(byte[] data, PublicKey publicKey)  
 	    {  
 	        try  
 	        {  
 	            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");  
-	            // 编码前设定编码方式及密钥  
+	            // 編碼前設定編碼方式及密鑰  
 	            cipher.init(Cipher.ENCRYPT_MODE, publicKey);  
-	            // 传入编码数据并返回编码结果  
+	            // 傳入編碼數據並返回編碼結果  
 	            return cipher.doFinal(data);  
 	        } catch (Exception e)  
 	        {  
@@ -77,12 +77,12 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 用私钥解密 
+	     * 用私鑰解密 
 	     *  
 	     * @param encryptedData 
-	     *            经过encryptedData()加密返回的byte数据 
+	     *            經過encryptedData()加密返回的byte數據 
 	     * @param privateKey 
-	     *            私钥 
+	     *            私鑰 
 	     * @return 
 	     */  
 	    public static byte[] decryptData(byte[] encryptedData, PrivateKey privateKey)  
@@ -99,7 +99,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 通过公钥byte[](publicKey.getEncoded())将公钥还原，适用于RSA算法 
+	     * 通過公鑰byte[](publicKey.getEncoded())將公鑰還原，適用于RSA算法 
 	     *  
 	     * @param keyBytes 
 	     * @return 
@@ -116,7 +116,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 通过私钥byte[]将公钥还原，适用于RSA算法 
+	     * 通過私鑰byte[]將公鑰還原，適用于RSA算法 
 	     *  
 	     * @param keyBytes 
 	     * @return 
@@ -133,7 +133,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 使用N、e值还原公钥 
+	     * 使用N、e值還原公鑰 
 	     *  
 	     * @param modulus 
 	     * @param publicExponent 
@@ -153,7 +153,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 使用N、d值还原私钥 
+	     * 使用N、d值還原私鑰 
 	     *  
 	     * @param modulus 
 	     * @param privateExponent 
@@ -173,12 +173,12 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 从字符串中加载公钥 
+	     * 以字符中加載公鑰 
 	     *  
 	     * @param publicKeyStr 
-	     *            公钥数据字符串 
+	     *            公鑰數據字符串 
 	     * @throws Exception 
-	     *             加载公钥时产生的异常 
+	     *             加載公鑰時產生的異常 
 	     */  
 	    public static PublicKey loadPublicKey(String publicKeyStr) throws Exception  
 	    {  
@@ -190,19 +190,19 @@ package com.bais.hismart.pay.activity;
 	            return (RSAPublicKey) keyFactory.generatePublic(keySpec);  
 	        } catch (NoSuchAlgorithmException e)  
 	        {  
-	            throw new Exception("无此算法");  
+	            throw new Exception("無此算法");  
 	        } catch (InvalidKeySpecException e)  
 	        {  
-	            throw new Exception("公钥非法");  
+	            throw new Exception("公鑰非法");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("公钥数据为空");  
+	            throw new Exception("公鑰數據為空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 从字符串中加载私钥<br> 
-	     * 加载时使用的是PKCS8EncodedKeySpec（PKCS#8编码的Key指令）。 
+	     * 以字符中加載私鑰<br> 
+	     * 加載時使用的是PKCS8EncodedKeySpec（PKCS#8??的Key指令）。 
 	     *  
 	     * @param privateKeyStr 
 	     * @return 
@@ -219,23 +219,23 @@ package com.bais.hismart.pay.activity;
 	            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);  
 	        } catch (NoSuchAlgorithmException e)  
 	        {  
-	            throw new Exception("无此算法");  
+	            throw new Exception("無此算法");  
 	        } catch (InvalidKeySpecException e)  
 	        {  
-	            throw new Exception("私钥非法");  
+	            throw new Exception("私鑰非法");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("私钥数据为空");  
+	            throw new Exception("私鑰數據為空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 从文件中输入流中加载公钥 
+	     * 以文件中輸入流中加載公鑰] 
 	     *  
 	     * @param in 
-	     *            公钥输入流 
+	     *            公鑰輸入流
 	     * @throws Exception 
-	     *             加载公钥时产生的异常 
+	     *             加載公鑰時產生的異常 
 	     */  
 	    public static PublicKey loadPublicKey(InputStream in) throws Exception  
 	    {  
@@ -244,18 +244,18 @@ package com.bais.hismart.pay.activity;
 	            return loadPublicKey(readKey(in));  
 	        } catch (IOException e)  
 	        {  
-	            throw new Exception("公钥数据流读取错误");  
+	            throw new Exception("公鑰數據流讀取錯誤");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("公钥输入流为空");  
+	            throw new Exception("公鑰輸入流為空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 从文件中加载私钥 
+	     * 以文件中加載私鑰]
 	     *  
 	     * @param keyFileName 
-	     *            私钥文件名 
+	     *            私?文件名 
 	     * @return 是否成功 
 	     * @throws Exception 
 	     */  
@@ -266,15 +266,15 @@ package com.bais.hismart.pay.activity;
 	            return loadPrivateKey(readKey(in));  
 	        } catch (IOException e)  
 	        {  
-	            throw new Exception("私钥数据读取错误");  
+	            throw new Exception("私??据?取??");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("私钥输入流为空");  
+	            throw new Exception("私??入流?空");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * 读取密钥信息 
+	     * 讀取密鑰信息
 	     *  
 	     * @param in 
 	     * @return 
@@ -301,7 +301,7 @@ package com.bais.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * 打印公钥信息 
+	     * 打印公鑰信息
 	     *  
 	     * @param publicKey 
 	     */  
