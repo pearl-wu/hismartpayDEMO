@@ -18,7 +18,7 @@ public class Base64Utils
             -1, -1, -1 };  
   
     /** 
-     * ¥[±K 
+     * åŠ å¯† 
      *  
      * @param data 
      * @return 
@@ -58,7 +58,7 @@ public class Base64Utils
     }  
   
     /** 
-     * ¸Ñ±K 
+     * è§£å¯† 
      *  
      * @param str 
      * @return 
@@ -127,4 +127,4 @@ public class Base64Utils
         return sb.toString().getBytes("iso8859-1");  
     }  
   
-} 
+}  
