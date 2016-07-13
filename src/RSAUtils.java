@@ -1,4 +1,4 @@
-package com.hismart.pay.activity;
+package com.bais.hismart.pay.activity;
 
 	import java.io.BufferedReader;  
 	import java.io.IOException;  
@@ -29,11 +29,11 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ??æœº??Ÿæ?RSAå¯†é’¥å¯? 
+	     * ??ä¹—æƒ»??æ»“?å¯©SAèŸ‡ï¿½å¾´èŸ‡? 
 	     *  
 	     * @param keyLength 
-	     *            å¯†é’¥?•¿åº¦ï?Œè?ƒå›´ï¼?512ï½?2048<br> 
-	     *            ä¸??ˆ¬1024 
+	     *            èŸ‡ï¿½å¾´?æŸ„è ï½¦?ç‘š?ï¿½å³©ï¿½?512ï¿½?2048<br> 
+	     *            è³??æ¡1024 
 	     * @return 
 	     */  
 	    public static KeyPair generateRSAKeyPair(int keyLength)  
@@ -51,23 +51,23 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?”¨?…¬?’¥?? å?? <br> 
-	     * æ¯æ¬¡?? å?†ç?„å?—è?‚æ•°ï¼Œä?èƒ½è¶…è?‡å?†é’¥??„é•¿åº¦å?¼å?å»11 
+	     * ?ç•‘?ï¿½?å¾´???? <br> 
+	     * è±ˆä¹—ï½¬ï½¡???ï¿½?ï¿½?è‹“?ã‚ˆç„šï¿½å¾¡?å´ï¿½é›œï¿½?ï¿½?ï¿½å¾´??ï¿½æŸ„è ï½¦?ï½¼?ä¸æ‚‰11 
 	     *  
 	     * @param data 
-	     *            ???? å?†æ•°?®??„byte?•°?® 
+	     *            ?????ï¿½ç„š?ç´º??ï¿½yte?ç„š?ç´º 
 	     * @param pubKey 
-	     *            ?…¬?’¥ 
-	     * @return ?? å?†å?ç?„byte??‹æ•°?® 
+	     *            ?ï¿½?å¾´ 
+	     * @return ???ï¿½?å®ˆ?ï¿½yte??åŒºç„š?ç´º 
 	     */  
 	    public static byte[] encryptData(byte[] data, PublicKey publicKey)  
 	    {  
 	        try  
 	        {  
 	            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");  
-	            // ç¼–ç?å?è®¾å®šç?–ç?æ–¹å¼å?Šå?†é’¥  
+	            // éƒ›ä¹Ÿ?âˆ?å´ï½®ï½¾è³å¤‚?ä¹Ÿ?âˆµå©¿è ‘ä¸?é›?ï¿½å¾´  
 	            cipher.init(Cipher.ENCRYPT_MODE, publicKey);  
-	            // ä¼ å…¥ç¼–ç?æ•°?®å¹¶è?”å?ç?–ç?ç?“æ??  
+	            // è¨èœˆï½¥éƒ›ä¹Ÿ?âˆµç„š?ç´ºèŸ·ï½¶?æ³Œ?æ¨’?ä¹Ÿ?âˆ«?æº??  
 	            return cipher.doFinal(data);  
 	        } catch (Exception e)  
 	        {  
@@ -77,12 +77,12 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?”¨ç§é’¥è§?å¯? 
+	     * ?ç•‘é˜ï¿½å¾´éš—?èŸ‡? 
 	     *  
 	     * @param encryptedData 
-	     *            ç»è?‡encryptedData()?? å?†è?”å?ç?„byte?•°?® 
+	     *            æ‰ˆå‰°?ãŒƒncryptedData()???ï¿½?æ³Œ?æ¨’?ï¿½yte?ç„š?ç´º 
 	     * @param privateKey 
-	     *            ç§é’¥ 
+	     *            é˜ï¿½å¾´ 
 	     * @return 
 	     */  
 	    public static byte[] decryptData(byte[] encryptedData, PrivateKey privateKey)  
@@ -99,7 +99,7 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?šè?‡å…¬?’¥byte[](publicKey.getEncoded())å°†å…¬?’¥è¿˜å?Ÿï?Œé?‚ç”¨äºRSAç®—æ?? 
+	     * ?å¤Š?ï¿½ï¿½?å¾´byte[](publicKey.getEncoded())èŸ†ï¿½ï¿½?å¾´éœ‘ä¼œ?æ»‚?ç¢?ã‚‰ç•‘è å±±SAé‚‚ç²?? 
 	     *  
 	     * @param keyBytes 
 	     * @return 
@@ -116,7 +116,7 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ?šè?‡ç?é’¥byte[]å°†å…¬?’¥è¿˜å?Ÿï?Œé?‚ç”¨äºRSAç®—æ?? 
+	     * ?å¤Š?ï¿½?ï¿½å¾´byte[]èŸ†ï¿½ï¿½?å¾´éœ‘ä¼œ?æ»‚?ç¢?ã‚‰ç•‘è å±±SAé‚‚ç²?? 
 	     *  
 	     * @param keyBytes 
 	     * @return 
@@ -133,7 +133,7 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ä½¿ç”¨N?e?¼è?˜å?Ÿå…¬?’¥ 
+	     * è´ï½¿é€•ï½¨N?â€˜?ï½¼?ä¼œ?æº·ï¿½?å¾´ 
 	     *  
 	     * @param modulus 
 	     * @param publicExponent 
@@ -153,7 +153,7 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ä½¿ç”¨N?d?¼è?˜å?Ÿç?é’¥ 
+	     * è´ï½¿é€•ï½¨N?â€¥?ï½¼?ä¼œ?æº½?ï¿½å¾´ 
 	     *  
 	     * @param modulus 
 	     * @param privateExponent 
@@ -173,12 +173,12 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ä»å?—ç¬¦ä¸²ä¸­?? è½½?…¬?’¥ 
+	     * è‰ä¸»?ç¤¼ï½¬ï½¦è³ï½²è³ï½­??éœ“ï½½?ï¿½?å¾´ 
 	     *  
 	     * @param publicKeyStr 
-	     *            ?…¬?’¥?•°?®å­—ç¬¦ä¸? 
+	     *            ?ï¿½?å¾´?ç„š?ç´ºèŸ„ç¤¼ï½¬ï½¦è³? 
 	     * @throws Exception 
-	     *             ?? è½½?…¬?’¥?—¶äº§ç?Ÿç?„å?‚å¸¸ 
+	     *             ??éœ“ï½½?ï¿½?å¾´?æ…®è ï½§?æº½?ï¿½?ã‚‡ï½¸ï½¸ 
 	     */  
 	    public static PublicKey loadPublicKey(String publicKeyStr) throws Exception  
 	    {  
@@ -190,19 +190,19 @@ package com.hismart.pay.activity;
 	            return (RSAPublicKey) keyFactory.generatePublic(keySpec);  
 	        } catch (NoSuchAlgorithmException e)  
 	        {  
-	            throw new Exception("?? æ­¤ç®—æ??");  
+	            throw new Exception("??è±ï½¤é‚‚ç²??");  
 	        } catch (InvalidKeySpecException e)  
 	        {  
-	            throw new Exception("?…¬?’¥??æ??");  
+	            throw new Exception("?ï¿½?å¾´??æ¨Š??");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("?…¬?’¥?•°?®ä¸ºç©º");  
+	            throw new Exception("?ï¿½?å¾´?ç„š?ç´ºè³ï½ºé¨ï½º");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * ä»å?—ç¬¦ä¸²ä¸­?? è½½ç§é’¥<br> 
-	     * ?? è½½?—¶ä½¿ç”¨??„æ˜¯PKCS8EncodedKeySpecï¼ˆPKCS#8ç¼–ç?ç?„Key??‡ä»¤ï¼‰ã?? 
+	     * è‰ä¸»?ç¤¼ï½¬ï½¦è³ï½²è³ï½­??éœ“ï½½é˜ï¿½å¾´<br> 
+	     * ??éœ“ï½½?æ…®è´ï½¿é€•ï½¨??ï¿½å¼PKCS8EncodedKeySpecï¿½ï¿½KCS#8éƒ›ä¹Ÿ?âˆ«?Ğšey??ï¿½ï½»ï½¤ï¿½å³¨?? 
 	     *  
 	     * @param privateKeyStr 
 	     * @return 
@@ -219,23 +219,23 @@ package com.hismart.pay.activity;
 	            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);  
 	        } catch (NoSuchAlgorithmException e)  
 	        {  
-	            throw new Exception("?? æ­¤ç®—æ??");  
+	            throw new Exception("??è±ï½¤é‚‚ç²??");  
 	        } catch (InvalidKeySpecException e)  
 	        {  
-	            throw new Exception("ç§é’¥??æ??");  
+	            throw new Exception("é˜ï¿½å¾´??æ¨Š??");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("ç§é’¥?•°?®ä¸ºç©º");  
+	            throw new Exception("é˜ï¿½å¾´?ç„š?ç´ºè³ï½ºé¨ï½º");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * ä»æ?‡ä»¶ä¸­è?“å…¥æµä¸­?? è½½?…¬?’¥ 
+	     * è‰å–?ï¿½ï½»ï½¶è³ï½­?ç˜ï¿½è±¬âˆ½ï½¸ï½­??éœ“ï½½?ï¿½?å¾´ 
 	     *  
 	     * @param in 
-	     *            ?…¬?’¥è¾“å…¥æµ? 
+	     *            ?ï¿½?å¾´éœç˜ï¿½è±¬? 
 	     * @throws Exception 
-	     *             ?? è½½?…¬?’¥?—¶äº§ç?Ÿç?„å?‚å¸¸ 
+	     *             ??éœ“ï½½?ï¿½?å¾´?æ…®è ï½§?æº½?ï¿½?ã‚‡ï½¸ï½¸ 
 	     */  
 	    public static PublicKey loadPublicKey(InputStream in) throws Exception  
 	    {  
@@ -244,19 +244,19 @@ package com.hismart.pay.activity;
 	            return loadPublicKey(readKey(in));  
 	        } catch (IOException e)  
 	        {  
-	            throw new Exception("?…¬?’¥?•°?®æµè¯»??–é?™è¯¯");  
+	            throw new Exception("?ï¿½?å¾´?ç„š?ç´ºè±¬âˆ¬ï½¯ï½»??å¤œ?å‘µï½¯ï½¯");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("?…¬?’¥è¾“å…¥æµä¸ºç©?");  
+	            throw new Exception("?ï¿½?å¾´éœç˜ï¿½è±¬âˆ½ï½¸ï½ºé¨?");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * ä»æ?‡ä»¶ä¸­å? è½½ç§é’¥ 
+	     * è‰å–?ï¿½ï½»ï½¶è³ï½­?éœ“ï½½é˜ï¿½å¾´ 
 	     *  
 	     * @param keyFileName 
-	     *            ç§é’¥??‡ä»¶??? 
-	     * @return ?˜¯?¦??å?? 
+	     *            é˜ï¿½å¾´??ï¿½ï½»ï½¶??? 
+	     * @return ?å¼?å‡„??ä»™?? 
 	     * @throws Exception 
 	     */  
 	    public static PrivateKey loadPrivateKey(InputStream in) throws Exception  
@@ -266,15 +266,15 @@ package com.hismart.pay.activity;
 	            return loadPrivateKey(readKey(in));  
 	        } catch (IOException e)  
 	        {  
-	            throw new Exception("ç§é’¥?•°?®è¯»å?–é?™è¯¯");  
+	            throw new Exception("é˜ï¿½å¾´?ç„š?ç´ºéš¸ï½»?å¤œ?å‘µï½¯ï½¯");  
 	        } catch (NullPointerException e)  
 	        {  
-	            throw new Exception("ç§é’¥è¾“å…¥æµä¸ºç©?");  
+	            throw new Exception("é˜ï¿½å¾´éœç˜ï¿½è±¬âˆ½ï½¸ï½ºé¨?");  
 	        }  
 	    }  
 	  
 	    /** 
-	     * è¯»å?–å?†é’¥ä¿¡æ¯ 
+	     * éš¸ï½»?é–€?ï¿½å¾´è«ï½¡è«±ï½¯ 
 	     *  
 	     * @param in 
 	     * @return 
@@ -301,7 +301,7 @@ package com.hismart.pay.activity;
 	    }  
 	  
 	    /** 
-	     * ??“å°?…¬?’¥ä¿¡æ¯ 
+	     * ??ç˜é­‚?ï¿½?å¾´è«ï½¡è«±ï½¯ 
 	     *  
 	     * @param publicKey 
 	     */  
