@@ -26,14 +26,14 @@
     	
         <config-file target="res/xml/config.xml" parent="/*">
            <feature name="hiOrder">
-                <param name="android-package" value="com.bais.hismart.pay.activity.MainActivity"/>
+                <param name="android-package" value="com.bais.hismart.MainActivity"/>
             </feature>
         </config-file>
 
-	<source-file src="src/MainActivity.java" target-dir="src/com/bais/hismart/pay/activity/" />
-	<source-file src="src/MD5Signature.java" target-dir="src/com/bais/hismart/pay/activity/" />
-	<source-file src="src/Base64Utils.java" target-dir="src/com/bais/hismart/pay/activity/" />
-	<source-file src="src/RSAUtils.java" target-dir="src/com/bais/hismart/pay/activity/" />
+	<source-file src="src/MainActivity.java" target-dir="src/com/bais/hismart/" />
+	<source-file src="src/MD5Signature.java" target-dir="src/com/bais/hismart/" />
+	<source-file src="src/Base64Utils.java" target-dir="src/com/bais/hismart/" />
+	<source-file src="src/RSAUtils.java" target-dir="src/com/bais/hismart/" />
     </platform>
 
 </plugin>
