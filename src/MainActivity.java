@@ -1,4 +1,4 @@
-package com.bais.hismart.pay.activity;
+package com.bais.hismart;
 
 import java.security.PublicKey;
 
