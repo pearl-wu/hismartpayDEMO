@@ -14,10 +14,6 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "hiOrder", "Pay", [options]);
     },
 	
-    change: function (mag, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "hiOrder", "Change", [mag]);
-    },
-	
     iandroid: function (mag, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "hiOrder", "Iandroid", [mag]);
     },
