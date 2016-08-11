@@ -32,7 +32,7 @@ public class MainActivity extends CordovaPlugin {
 		  private static final int RESULT_OK = 0;
     	  private String payResult,trade_no,packageName,platformId,paymentMD5;
     	  private ContentResolver mContentResolver = null;
-    	  private String MD5Key="612F7F6BF73CA1EB5A66DA0BDB7367AC";//由海信分配每个应用的key不同
+    	  private String MD5Key="";//由海信分配每个应用的key不同
 	
     	  public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException{
     		      			
@@ -42,17 +42,17 @@ public class MainActivity extends CordovaPlugin {
     				// final JSONObject options = args.getJSONObject(0);
     		        mContentResolver = cordova.getActivity().getContentResolver();
     		        packageName = cordova.getActivity().getPackageName();
-    		        packageName = "cn.com.ebais.kyytvhismart";
+    		        packageName = "";
     				
     				
                     Intent intent = new Intent();
                     //intent.setAction("com.hisense.hitv.payment.MAIN");//应用启动的action
                     intent.setAction("com.hisense.hitv.payment.QC");//应用启动的action
                     intent.putExtra("platformId", "");//支付平台1-支付宝2-微信（可空）
-                    intent.putExtra("appName", "孔爺爺國學藏寶箱"); //应用名称
+                    intent.putExtra("appName", ""); //应用名称
                     intent.putExtra("packageName", packageName);//包名               
                     intent.putExtra("paymentMD5Key", paymentMD5);//包名md5签名
-                    intent.putExtra("tradeNum", "adhjaddk12313141563464629");//商品流水号，第三方商品唯一编号
+                    intent.putExtra("tradeNum", "");//商品流水号，第三方商品唯一编号
                     intent.putExtra("goodsPrice", "0.01");//商品价格单位元，注意请转化成字符串
                     intent.putExtra("goodsName", "测试PA1");//商品名称
                     intent.putExtra("alipayUserAmount", "hsyzf@hisense.com");//收款账户
@@ -75,16 +75,6 @@ public class MainActivity extends CordovaPlugin {
                 }   			
 
     	       return true;
-    		}else if(action.equals("Change")){
-    			boolean boo = args.getBoolean(0);
-    				if(!boo){
-    				//Resultecho(true, "---(IdChange)false---", callbackContext);
-    					return false;
-    				}else{
-    					//Resultecho(true, "---(IdChange)true---", callbackContext);
-    									
-    				}
-    			return true;
     		}else if(action.equals("Iandroid")){
     			boolean tr = args.getBoolean(0);
     			if(tr){
